@@ -127,7 +127,7 @@ html[data-card-loading] main{visibility:hidden}
 .collage-stage #wish-text{font-size:clamp(9px,1.75cqw,15px);line-height:1.7}
 .collage-stage .letter-sign{font-size:clamp(11px,2.1cqw,19px);line-height:1.35;text-align:right;margin:1.2cqw 0 0 18%}
 /* Phones: a taller envelope gives the whole letter room above the pocket. */
-@media(max-width:700px){.keepsake-composition{aspect-ratio:.8}.collage-stage .letter,.read-letter-hit{top:3%}.collage-stage .letter{height:72%;padding:8% 6% 8% 4.5%}.collage-stage .letter-heart{font-size:11px}.collage-stage .salutation{font-size:12px}.collage-stage #wish-text{font-size:8.5px;line-height:1.55}.collage-stage .letter-sign{font-size:10.5px;margin:4px 6% 0 7%}}
+@media(max-width:700px){.keepsake-composition{aspect-ratio:.8}.collage-stage .letter,.read-letter-hit{left:3%;width:52%;top:6%}.collage-stage .letter{height:56%;padding:9% 8% 5% 8%}.read-letter-hit{height:50%}.collage-stage .letter-heart{font-size:2.95cqw}.collage-stage .salutation{font-size:3.2cqw}.collage-stage #wish-text{font-size:2.28cqw;line-height:1.5}.collage-stage .letter-sign{font-size:2.68cqw;margin:.8cqw 10% 0 6%;text-wrap:balance}}
 /* Reader: opening on the left, body centred, closing on the right. */
 #keepsake-viewer-content .salutation{text-align:left}
 #keepsake-viewer-content .wish-text{text-align:center}
