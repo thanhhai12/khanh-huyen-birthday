@@ -118,3 +118,17 @@ html[data-card-loading] main{visibility:hidden}
  #keepsake-viewer-content .wish-text{line-height:1.65}
  #keepsake-viewer-content .letter-sign{max-width:88%;margin-left:auto;margin-right:auto;font-size:calc(var(--reader-font)*1.2)}
 }
+
+/* Preview letter: lift it above the pocket, keep text clear of the photo, readable floor on phones; full text lives in the reader. */
+.collage-stage .letter,.read-letter-hit{top:5%}
+.collage-stage .letter{padding:8% 7% 9% 5%}
+.collage-stage .letter-heart{font-size:clamp(12px,2.6cqw,24px);margin-bottom:.8cqw}
+.collage-stage .salutation{font-size:clamp(13px,2.8cqw,25px);line-height:1.3;margin-bottom:1.2cqw}
+.collage-stage #wish-text{font-size:clamp(9px,1.75cqw,15px);line-height:1.7}
+.collage-stage .letter-sign{font-size:clamp(11px,2.1cqw,19px);line-height:1.35;text-align:right;margin:1.2cqw 0 0 18%}
+/* Phones: a taller envelope gives the whole letter room above the pocket. */
+@media(max-width:700px){.keepsake-composition{aspect-ratio:.8}.collage-stage .letter,.read-letter-hit{top:3%}.collage-stage .letter{height:72%;padding:8% 6% 8% 4.5%}.collage-stage .letter-heart{font-size:11px}.collage-stage .salutation{font-size:12px}.collage-stage #wish-text{font-size:8.5px;line-height:1.55}.collage-stage .letter-sign{font-size:10.5px;margin:4px 6% 0 7%}}
+/* Reader: opening on the left, body centred, closing on the right. */
+#keepsake-viewer-content .salutation{text-align:left}
+#keepsake-viewer-content .wish-text{text-align:center}
+#keepsake-viewer-content .letter-sign{text-align:right;text-wrap:balance;max-width:none;margin-left:0;margin-right:0}
