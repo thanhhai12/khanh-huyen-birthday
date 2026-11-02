@@ -135,3 +135,6 @@ html[data-card-loading] main{visibility:hidden}
 /* Background music switch, kept clear of the content in a corner. */
 .music-toggle{position:fixed;right:14px;bottom:14px;z-index:20;width:42px;height:42px;border-radius:50%;border:1px solid #e3c6cf;background:#fff8f3e6;color:#9b6378;font-size:20px;line-height:1;box-shadow:0 3px 10px #6d4a5626}
 .music-toggle.is-muted{color:#b9a3aa;text-decoration:line-through}
+/* Small hint under the title: the letter and photos open in the reader. */
+.collage-stage>.section-intro>.tap-hint{margin:4px 0 0;font-size:13px;letter-spacing:.3px;color:#9a7f8a;opacity:.85}
+@media(max-width:700px){.collage-stage>.section-intro>.tap-hint{font-size:12px}}
