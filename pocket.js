@@ -4,8 +4,13 @@
    const paper=content.querySelector('.letter');if(!paper)return;
    paper.style.removeProperty('transform');
    const availableW=content.clientWidth,availableH=content.clientHeight;
-   const width=Math.min(700,availableW);paper.style.width=width+'px';
-   paper.style.setProperty('--reader-font',width<450?'16px':'19px');
+   const compact=matchMedia('(max-width:700px)').matches;
+   const width=compact?Math.min(700,availableW):Math.min(1200,availableW);
+   paper.style.width=width+'px';
+   // Padding percentages on an absolutely positioned paper use the viewer width.
+   // Resolve them against the paper itself so desktop gutters cannot crush the text.
+   paper.style.padding=compact?`${width*.30}px ${width*.20}px ${width*.60}px`:`${width*.18}px ${width*.16}px ${width*.24}px`;
+   paper.style.setProperty('--reader-font',compact?(width<450?'16px':'19px'):`${Math.min(28,Math.max(20,width*.025))}px`);
    const naturalH=paper.offsetHeight;
    const scale=Math.min(1,availableH/naturalH,availableW/width);
    paper.style.transform=`scale(${scale})`;
@@ -15,6 +20,7 @@
  viewer.addEventListener('close',()=>document.documentElement.classList.remove('viewer-open'));
  new ResizeObserver(()=>{if(viewer.open)fitLetter()}).observe(content);
  window.visualViewport?.addEventListener('resize',()=>{if(viewer.open)fitLetter()});
+ document.fonts?.ready.then(()=>{if(viewer.open)fitLetter()});
  document.querySelector('.read-letter-hit').addEventListener('click',()=>{
    const copy=document.querySelector('.keepsake-composition .letter').cloneNode(true);
    copy.querySelectorAll('[id]').forEach(el=>{el.classList.add(el.id);el.removeAttribute('id')});show(copy);

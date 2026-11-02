@@ -110,3 +110,11 @@ html[data-card-loading] main{visibility:hidden}
 .cloud-admin h3{margin-top:0;color:#8d6073}.cloud-admin p,.cloud-admin a{font-size:12px;line-height:1.8}.cloud-admin a{color:#98697e}.cloud-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.cloud-actions .editor-button{margin:0}#cloud-status{font-weight:500}#cloud-status[data-error="true"]{color:#a1354b}#cloud-token{width:100%;font-size:16px}#dev-dialog textarea:disabled,#dev-dialog input:disabled{opacity:.65;cursor:default}.editor-button:disabled{opacity:.5;cursor:default}
 
 .salutation{white-space:pre-line}
+
+/* Use the desktop canvas for reading, while keeping the compact paper layout. */
+@media(min-width:701px){
+ #keepsake-viewer{width:min(1320px,calc(100vw - 40px))}
+ #keepsake-viewer-content .salutation{text-align:center}
+ #keepsake-viewer-content .wish-text{line-height:1.65}
+ #keepsake-viewer-content .letter-sign{max-width:88%;margin-left:auto;margin-right:auto;font-size:calc(var(--reader-font)*1.2)}
+}
