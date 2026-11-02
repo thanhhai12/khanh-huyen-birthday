@@ -65,7 +65,7 @@
      let initial=attr?element.getAttribute(attr):mode==='multiline'?element.innerText:target.textContent;
      if(key==='readLabel'&&!initial)initial='Đọc lại lời chúc dành cho Khánh Huyền';
      if(key==='placeholder')initial='Một khoảnh khắc xinh xắn\nđang chờ được đặt vào đây.';
-     let value=typeof saved[key]==='string'?saved[key]:(initial||'');if(key==='wish'&&value.startsWith('Chúc Huyền một tuổi mới thật dịu dàng,'))value=initial;if(key==='scroll'&&value==='Còn một điều xinh xắn ở phía dưới')value='Một lá thư, một khoảnh khắc, thật nhiều yêu thương.';if(key==='arrow'&&value==='↓')value='♡';if(key==='scroll'&&['Một lá thư, một khoảnh khắc, thật nhiều yêu thương.','Còn một điều xinh xắn ở phía dưới'].includes(value))value='Chạm vào thư hoặc ảnh để xem đầy đủ.';values[key]=value;
+     let value=typeof saved[key]==='string'?saved[key]:(initial||'');values[key]=value;
      function apply(text){
        if(attr){if(key==='openLabel'&&element.getAttribute('aria-expanded')==='true')return;element.setAttribute(attr,text)}
        else target.textContent=text;
