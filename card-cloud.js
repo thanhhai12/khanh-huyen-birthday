@@ -3,7 +3,6 @@
  const repository='thanhhai12/khanh-huyen-birthday';
  const path='card-content.json';
  const api=`https://api.github.com/repos/${repository}/contents/${path}`;
- const raw=`https://raw.githubusercontent.com/${repository}/main/${path}`;
  const status=document.getElementById('cloud-status');
  const tokenInput=document.getElementById('cloud-token');
  const connect=document.getElementById('cloud-connect');
@@ -31,6 +30,25 @@
    throw new Error('Chưa lưu được lên web. Kiểm tra kết nối rồi bấm Lưu lại.');
  }
  function encode(value){const bytes=new TextEncoder().encode(JSON.stringify(value,null,2));let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));return btoa(binary)}
+ function decodeContent(content){const binary=atob(content.replace(/\s/g,''));return JSON.parse(new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0))))}
+ async function readShared(authenticated=false){
+   const readHeaders=authenticated?headers():{'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+   const response=await fetch(`${api}?ref=main&v=${Date.now()}`,{headers:readHeaders,cache:'no-store'});
+   if(!response.ok){if(authenticated)return responseJSON(response);throw new Error('Không tải được nội dung mới nhất. Kiểm tra mạng rồi tải lại trang.')}
+   const metadata=await response.json();
+   let value;
+   if(metadata.encoding==='base64'&&metadata.content)value=decodeContent(metadata.content);
+   else{
+     // Large files are read by immutable blob SHA, never a cached branch URL.
+     const blob=await responseJSON(await fetch(`https://api.github.com/repos/${repository}/git/blobs/${metadata.sha}`,{headers:readHeaders,cache:'no-store'}));
+     if(blob.encoding!=='base64')throw new Error('Không đọc được nội dung mới nhất.');value=decodeContent(blob.content);
+   }
+   return {value:validate(value),sha:metadata.sha};
+ }
+ function sameContent(a,b){
+   const ordered=object=>Object.keys(object).sort().map(key=>[key,object[key]]);
+   return JSON.stringify([ordered(a.text),ordered(a.photos)])===JSON.stringify([ordered(b.text),ordered(b.photos)]);
+ }
  async function write(snapshot){
    const updatedAt=new Date().toISOString();
    const response=await fetch(api,{method:'PUT',headers:headers(),body:JSON.stringify({message:'Update birthday card content',content:encode({...snapshot,updatedAt}),sha,branch:'main'})});
@@ -50,9 +68,8 @@
  function schedule(){dirty=true;say('Có thay đổi chưa lưu — đang chờ đồng bộ…');notify();clearTimeout(timer);timer=setTimeout(()=>flush().catch(()=>{}),1500)}
  const ready=(async()=>{
    try{
-     const response=await fetch(`${raw}?v=${Date.now()}`,{cache:'no-store'});
-     if(!response.ok)throw new Error('Không tải được nội dung dùng chung. Kiểm tra mạng rồi tải lại trang.');
-     state=validate(await response.json());loaded=true;document.documentElement.removeAttribute('data-card-loading');document.getElementById('card-loading').hidden=true;say('Đang xem bản dùng chung. Kết nối quản trị để chỉnh sửa.');return clone(state);
+     const latest=await readShared();
+     state=latest.value;loaded=true;document.documentElement.removeAttribute('data-card-loading');document.getElementById('card-loading').hidden=true;say('Đang xem bản dùng chung. Kết nối quản trị để chỉnh sửa.');return clone(state);
    }catch(error){document.getElementById('card-loading').textContent='Không tải được thiệp. Bạn kiểm tra mạng rồi tải lại trang nhé.';say(error.message,true);throw error}
  })();
  // Public reading never uses the admin credential; it lives only in memory.
@@ -64,12 +81,9 @@
    try{
      await ready;
      // Bind to the latest version before editing; a later conflict never overwrites it.
-     const metadata=await responseJSON(await fetch(api,{headers:headers(),cache:'no-store'}));
-     let latest;
-     if(metadata.encoding==='base64'&&metadata.content){const binary=atob(metadata.content.replace(/\s/g,''));latest=JSON.parse(new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0))))}
-     else{const blob=await responseJSON(await fetch(`https://api.github.com/repos/${repository}/git/blobs/${metadata.sha}`,{headers:headers(),cache:'no-store'}));if(blob.encoding!=='base64')throw new Error('Không đọc được nội dung mới nhất.');const binary=atob(blob.content.replace(/\s/g,''));latest=JSON.parse(new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0))))}
-     if(JSON.stringify(validate(latest))!==JSON.stringify(state)){token='';say('Nội dung trên web đã cập nhật. Hãy tải lại trang rồi kết nối để chỉnh bản mới nhất.',true);return}
-     sha=metadata.sha;say('Đã kết nối. Sửa chữ sẽ tự lưu; thay hoặc xóa ảnh sẽ lưu ngay cho mọi người.');
+     const latest=await readShared(true);
+     if(!sameContent(latest.value,state)){token='';say('Nội dung trên web đã cập nhật. Hãy tải lại trang rồi kết nối để chỉnh bản mới nhất.',true);return}
+     state=latest.value;sha=latest.sha;say('Đã kết nối. Sửa chữ sẽ tự lưu; thay hoặc xóa ảnh sẽ lưu ngay cho mọi người.');
    }catch(error){token='';say(error.message,true)}finally{connecting=false;connect.disabled=false;notify()}
  });
  disconnect.addEventListener('click',async()=>{if(saving||dirty){say('Hãy chờ lưu xong hoặc bấm Lưu lại trước khi ngắt kết nối.',true);return}token='';sha='';say('Đã ngắt kết nối quản trị.');notify()});
