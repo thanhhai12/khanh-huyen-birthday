@@ -132,3 +132,6 @@ html[data-card-loading] main{visibility:hidden}
 #keepsake-viewer-content .salutation{text-align:left}
 #keepsake-viewer-content .wish-text{text-align:center}
 #keepsake-viewer-content .letter-sign{text-align:right;text-wrap:balance;max-width:none;margin-left:0;margin-right:0}
+/* Background music switch, kept clear of the content in a corner. */
+.music-toggle{position:fixed;right:14px;bottom:14px;z-index:20;width:42px;height:42px;border-radius:50%;border:1px solid #e3c6cf;background:#fff8f3e6;color:#9b6378;font-size:20px;line-height:1;box-shadow:0 3px 10px #6d4a5626}
+.music-toggle.is-muted{color:#b9a3aa;text-decoration:line-through}

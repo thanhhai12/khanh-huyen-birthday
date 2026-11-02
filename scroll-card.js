@@ -49,4 +49,10 @@
    photoBusy=false;updatePhotoPermission();
  });
  remove.addEventListener('click',async()=>{if(!photoReady||!CardCloud.canEdit||photoBusy)return;const current=++revision;photoBusy=true;updatePhotoPermission();try{await PhotoStorage.set('main',null);if(current!==revision)return;image.removeAttribute('src');image.hidden=true;placeholder.hidden=false;photoInput.value='';status.textContent='Ảnh đã được xóa khỏi nội dung dùng chung.';}catch{if(current===revision)status.textContent='Không thể lưu thay đổi ảnh lên cloud. Ảnh chưa được xóa.';}finally{if(current===revision){photoBusy=false;updatePhotoPermission()}}});
+ // Background music starts with the envelope tap (browsers block autoplay) and can be muted any time.
+ const music=document.getElementById('bg-music'),musicToggle=document.getElementById('music-toggle');
+ music.volume=.6;
+ function setMusic(on){musicToggle.hidden=false;musicToggle.setAttribute('aria-pressed',on);musicToggle.setAttribute('aria-label',on?'Tắt nhạc nền':'Bật nhạc nền');musicToggle.classList.toggle('is-muted',!on);if(on)music.play().catch(()=>setMusic(false));else music.pause()}
+ open.addEventListener('click',()=>{if(musicToggle.hidden)setMusic(true)});
+ musicToggle.addEventListener('click',()=>setMusic(music.paused));
 })();
