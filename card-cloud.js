@@ -32,8 +32,9 @@
  }
  function encode(value){const bytes=new TextEncoder().encode(JSON.stringify(value,null,2));let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));return btoa(binary)}
  async function write(snapshot){
-   const response=await fetch(api,{method:'PUT',headers:headers(),body:JSON.stringify({message:'Update birthday card content',content:encode({...snapshot,updatedAt:new Date().toISOString()}),sha,branch:'main'})});
-   const result=await responseJSON(response);sha=result.content.sha;
+   const updatedAt=new Date().toISOString();
+   const response=await fetch(api,{method:'PUT',headers:headers(),body:JSON.stringify({message:'Update birthday card content',content:encode({...snapshot,updatedAt}),sha,branch:'main'})});
+   const result=await responseJSON(response);sha=result.content.sha;state.updatedAt=updatedAt;
  }
  async function flush(){
    clearTimeout(timer);
@@ -66,7 +67,7 @@
      const metadata=await responseJSON(await fetch(api,{headers:headers(),cache:'no-store'}));
      let latest;
      if(metadata.encoding==='base64'&&metadata.content){const binary=atob(metadata.content.replace(/\s/g,''));latest=JSON.parse(new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0))))}
-     else{const response=await fetch(`${raw}?admin=${Date.now()}`,{cache:'no-store'});if(!response.ok)throw new Error('Không tải được nội dung mới nhất.');latest=await response.json()}
+     else{const blob=await responseJSON(await fetch(`https://api.github.com/repos/${repository}/git/blobs/${metadata.sha}`,{headers:headers(),cache:'no-store'}));if(blob.encoding!=='base64')throw new Error('Không đọc được nội dung mới nhất.');const binary=atob(blob.content.replace(/\s/g,''));latest=JSON.parse(new TextDecoder().decode(Uint8Array.from(binary,c=>c.charCodeAt(0))))}
      if(JSON.stringify(validate(latest))!==JSON.stringify(state)){token='';say('Nội dung trên web đã cập nhật. Hãy tải lại trang rồi kết nối để chỉnh bản mới nhất.',true);return}
      sha=metadata.sha;say('Đã kết nối. Sửa chữ sẽ tự lưu; thay hoặc xóa ảnh sẽ lưu ngay cho mọi người.');
    }catch(error){token='';say(error.message,true)}finally{connecting=false;connect.disabled=false;notify()}
