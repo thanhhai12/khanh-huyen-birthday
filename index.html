@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-card-loading>
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Một lá thư gửi Khánh Huyền</title>
@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="scroll-card.css">
 <link rel="stylesheet" href="watercolor.css?v=collage-2">
-<link rel="stylesheet" href="collage.css?v=reader-safe-3">
+<link rel="stylesheet" href="collage.css?v=shared-1">
 </head><body>
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <linearGradient id="petal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fffdf8"/><stop offset=".55" stop-color="#f9e6e9"/><stop offset="1" stop-color="#d9a0b2"/></linearGradient>
@@ -17,6 +17,7 @@
 <g id="lilyflower"><g fill="url(#petal)" stroke="#d7aaba" stroke-width=".65"><path d="M0 0C-18-19-29-61-15-88C12-68 21-29 0 0Z"/><path d="M0 0C9-30 39-57 72-56C66-27 34-6 0 0Z"/><path d="M0 0C26-7 64 8 78 34C44 46 12 24 0 0Z"/><path d="M0 0C16 24 10 62-10 77C-34 49-22 17 0 0Z"/><path d="M0 0C-28 25-65 23-83 6C-64-18-25-18 0 0Z"/><path d="M0 0C-32-9-58-37-56-65C-23-61-5-30 0 0Z"/></g><g fill="none" stroke="#ac8970" stroke-width="1.4"><path d="M0 8L-12-29M0 8L14-31M0 8L31-15M0 8L-32-9"/></g><g fill="#9c745b"><ellipse cx="-12" cy="-29" rx="3" ry="6" transform="rotate(-20 -12 -29)"/><ellipse cx="14" cy="-31" rx="3" ry="6"/><ellipse cx="31" cy="-15" rx="5" ry="2.5"/><ellipse cx="-32" cy="-9" rx="5" ry="2.5"/></g><g fill="#bc7d97" opacity=".6"><circle cx="-8" cy="-17" r="1"/><circle cx="-3" cy="-26" r="1"/><circle cx="19" cy="-12" r="1"/><circle cx="25" cy="-19" r="1"/><circle cx="-21" cy="0" r="1"/><circle cx="-9" cy="26" r="1"/><circle cx="-3" cy="20" r="1"/></g></g>
 <g id="bouquet"><g fill="none" stroke="#8d9c7f" stroke-width="2"><path d="M130 330Q115 211 83 91M130 330Q188 226 183 121M130 330Q70 279 48 201M130 330Q150 218 128 179"/></g><use href="#leaf" transform="translate(117 267) rotate(-42)"/><use href="#leaf" transform="translate(133 295) rotate(45) scale(1.2)"/><use href="#leaf" transform="translate(80 206) rotate(-45) scale(.8)"/><use href="#leaf" transform="translate(164 224) rotate(60) scale(.9)"/><use href="#leaf" transform="translate(110 174) rotate(36) scale(.8)"/><use href="#leaf" transform="translate(190 170) rotate(43) scale(.7)"/><use href="#roseflower" transform="translate(66 213) rotate(-15) scale(.75)"/><use href="#roseflower" transform="translate(139 213) rotate(25) scale(.85)"/><use href="#roseflower" transform="translate(188 119) scale(.58)"/><use href="#lilyflower" transform="translate(88 109) rotate(-18) scale(.95)"/><use href="#lilyflower" transform="translate(174 191) rotate(38) scale(.7)"/><g fill="#fffaf2" stroke="#c7ab9f" stroke-width=".4"><circle cx="47" cy="145" r="4"/><circle cx="38" cy="137" r="3"/><circle cx="38" cy="153" r="3"/><circle cx="213" cy="226" r="3"/><circle cx="221" cy="218" r="4"/><circle cx="220" cy="234" r="3"/></g><path d="M123 291Q78 263 84 292Q88 306 123 291Q164 266 161 291Q154 308 123 291L105 324M123 291L145 320" fill="none" stroke="#d99ab0" stroke-width="9"/><path d="M123 291L110 321M123 291L142 318" fill="none" stroke="#eab8c7" stroke-width="4"/></g>
 </defs></svg>
+<p id="card-loading" role="status">Đang mở một chút yêu thương…</p>
 <main>
 <section class="stage cover" aria-label="Tấm thiệp sinh nhật">
   <picture class="cover-landscape" aria-hidden="true">
@@ -57,10 +58,11 @@
   <div class="scroll-cue">Một lá thư, một khoảnh khắc, thật nhiều yêu thương.<span aria-hidden="true">♡</span></div>
 </section>
 </main>
-<dialog id="dev-dialog" aria-labelledby="dev-title"><form method="dialog"><button class="close-editor" aria-label="Đóng dev mode">×</button></form><h2 id="dev-title">Góc nhỏ chỉnh thiệp</h2><p class="editor-description">Sửa mọi dòng chữ bên dưới, giao diện cập nhật ngay. Chữ và ảnh tự lưu trên trình duyệt này, kể cả khi tải lại hoặc đóng trang.</p><div id="text-editor-fields"></div><p id="text-save-status" role="status"></p><label for="photo-input">Ảnh kỷ niệm 1 · ảnh phía trước</label><input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" aria-describedby="photo-help"><p id="photo-help">JPG, PNG, WebP, AVIF hoặc GIF · Tối đa 8 MB. Khung thu nhỏ cắt ảnh cho vừa bố cục; chạm ảnh để xem đầy đủ. Ảnh không được tải lên máy chủ.</p><button class="editor-button secondary" id="remove-photo" type="button">Xóa ảnh</button><div id="extra-photo-editors"></div><p id="editor-status" role="status"></p><p class="editor-description">Mở dev mode: chạm 5 lần vào dòng chữ nhỏ ngay dưới lá thư (kể cả khi đã đổi chữ), hoặc Ctrl/⌘ + Shift + E. Nội dung lưu ở trình duyệt này, chưa đồng bộ sang thiết bị khác.</p></dialog>
+<dialog id="dev-dialog" aria-labelledby="dev-title"><form method="dialog"><button class="close-editor" aria-label="Đóng dev mode">×</button></form><h2 id="dev-title">Góc nhỏ chỉnh thiệp</h2><p class="editor-description">Nội dung được lưu chung cho mọi người. Kết nối quản trị để sửa chữ, thay hoặc xóa ảnh.</p><section class="cloud-admin" aria-labelledby="cloud-title"><h3 id="cloud-title">Lưu chung cho mọi người</h3><p>Chỉ chủ thiệp cần kết nối. Token chỉ giữ trong bộ nhớ của tab này.</p><label for="cloud-token">Token quản trị GitHub</label><input id="cloud-token" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Nhập token của bạn"><p>Tạo fine-grained token cho tài khoản thanhhai12, chọn repository khanh-huyen-birthday và quyền Contents: Read and write.</p><a href="https://github.com/settings/personal-access-tokens/new?name=Birthday%20card%20editor&amp;description=Edit%20birthday%20card%20content&amp;target_name=thanhhai12&amp;contents=write" target="_blank" rel="noopener noreferrer">Tạo token trên GitHub ↗</a><div class="cloud-actions"><button type="button" class="editor-button" id="cloud-connect">Kết nối quản trị</button><button type="button" class="editor-button secondary" id="cloud-save">Lưu lại</button><button type="button" class="editor-button secondary" id="cloud-disconnect" hidden>Ngắt kết nối</button></div><p id="cloud-status" role="status" aria-live="polite">Đang tải nội dung dùng chung…</p><button type="button" class="editor-button secondary" id="cloud-import" disabled>Đồng bộ bản đã sửa trên thiết bị này</button><p>Nút trên đưa cả chữ và ảnh từng lưu riêng trên thiết bị này lên bản chung.</p></section><div id="text-editor-fields"></div><p id="text-save-status" role="status"></p><label for="photo-input">Ảnh kỷ niệm 1 · ảnh phía trước</label><input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" aria-describedby="photo-help"><p id="photo-help">JPG, PNG, WebP, AVIF hoặc GIF · Tối đa 8 MB. Khung thu nhỏ cắt ảnh cho vừa bố cục; chạm ảnh để xem đầy đủ. Ảnh được lưu lên bản chung sau khi bạn kết nối quản trị.</p><button class="editor-button secondary" id="remove-photo" type="button">Xóa ảnh</button><div id="extra-photo-editors"></div><p id="editor-status" role="status"></p><p class="editor-description">Mở dev mode: chạm 5 lần vào dòng chữ nhỏ ngay dưới lá thư (kể cả khi đã đổi chữ), hoặc Ctrl/⌘ + Shift + E. Khi hiện “Đã lưu cho mọi người”, thiết bị khác tải lại trang sẽ thấy bản mới.</p></dialog>
 <dialog id="keepsake-viewer" aria-label="Xem thư và ảnh đầy đủ"><form method="dialog"><button class="close-editor" aria-label="Đóng nội dung">×</button></form><div id="keepsake-viewer-content"></div></dialog>
-<script src="photo-storage.js?v=durable-1"></script>
-<script src="scroll-card.js?v=durable-3"></script>
-<script src="text-editor.js?v=durable-3"></script>
-<script src="pocket.js?v=durable-3"></script>
+<script src="card-cloud.js?v=shared-1"></script>
+<script src="photo-storage.js?v=shared-1"></script>
+<script src="scroll-card.js?v=shared-1"></script>
+<script src="text-editor.js?v=shared-1"></script>
+<script src="pocket.js?v=shared-1"></script>
 </body></html>

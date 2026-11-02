@@ -1,5 +1,4 @@
-(()=>{
- const storageKey='khanh-huyen-card-text-v1';
+ (async()=>{
  const groups=[
   ['Bìa thiệp',[
    ['peekHeading','Tiêu đề trên lá thư nhỏ','.letter-peek > span:first-child'],
@@ -45,15 +44,17 @@
    ['triggerLabel','Tên nút chữ ký','#dev-trigger','attr:aria-label'],
   ]],
  ];
- let saved={};let canSave=true;
- try{const parsed=JSON.parse(localStorage.getItem(storageKey)||'{}');if(parsed&&typeof parsed==='object'&&!Array.isArray(parsed))saved=parsed}catch{canSave=false}
  const container=document.getElementById('text-editor-fields');
  const status=document.getElementById('text-save-status');
- const values={};
- function persist(){
-   try{localStorage.setItem(storageKey,JSON.stringify(values));canSave=true}catch{canSave=false}
-   status.textContent=canSave?'Đã cập nhật và lưu chữ trên trình duyệt này.':'Đã cập nhật bản xem. Trình duyệt không cho lưu, tải lại trang sẽ mất thay đổi.';
+ let shared;
+ try{shared=await CardCloud.ready}catch{
+   status.textContent='Không thể tải nội dung dùng chung. Trình chỉnh sửa chữ hiện không khả dụng.';
+   return;
  }
+ const values={};
+ const inputs=[];
+ function updatePermission(){inputs.forEach(input=>input.disabled=!CardCloud.canEdit)}
+ function persist(){CardCloud.setText({...values})}
  groups.forEach(([title,fields],groupIndex)=>{
    const details=document.createElement('details');details.className='text-editor-group';details.open=groupIndex===0;
    const summary=document.createElement('summary');summary.textContent=title;details.append(summary);
@@ -65,7 +66,7 @@
      let initial=attr?element.getAttribute(attr):mode==='multiline'?element.innerText:target.textContent;
      if(key==='readLabel'&&!initial)initial='Đọc lại lời chúc dành cho Khánh Huyền';
      if(key==='placeholder')initial='Một khoảnh khắc xinh xắn\nđang chờ được đặt vào đây.';
-     let value=typeof saved[key]==='string'?saved[key]:(initial||'');values[key]=value;
+     let value=typeof shared.text?.[key]==='string'?shared.text[key]:(initial??'');values[key]=value;
      function apply(text){
        if(attr){if(key==='openLabel'&&element.getAttribute('aria-expanded')==='true')return;element.setAttribute(attr,text)}
        else target.textContent=text;
@@ -73,7 +74,7 @@
      }
      apply(value);
      const fieldLabel=document.createElement('label');fieldLabel.htmlFor=`text-${key}`;fieldLabel.textContent=label;
-     const input=document.createElement('textarea');input.id=fieldLabel.htmlFor;input.rows=key==='wish'?8:mode==='multiline'?3:1;input.value=value;input.spellcheck=false;
+     const input=document.createElement('textarea');input.id=fieldLabel.htmlFor;input.rows=key==='wish'?8:mode==='multiline'?3:1;input.value=value;input.spellcheck=false;inputs.push(input);
      input.addEventListener('input',()=>{values[key]=input.value;apply(input.value);persist()});
      details.append(fieldLabel,input);
    });
@@ -85,9 +86,10 @@
  ['letter-stage','photo-stage'].forEach((id,index)=>{
    const key=`introOrnament${index}`,section=document.getElementById(id);
    const label=document.createElement('label');label.htmlFor=`text-${key}`;label.textContent=`Ký hiệu phía trên tiêu đề ${index===0?'lời chúc':'ảnh'}`;
-   const input=document.createElement('textarea');input.id=label.htmlFor;input.rows=1;values[key]=typeof saved[key]==='string'?saved[key]:'❦';input.value=values[key];
+   const input=document.createElement('textarea');input.id=label.htmlFor;input.rows=1;values[key]=typeof shared.text?.[key]==='string'?shared.text[key]:'❦';input.value=values[key];inputs.push(input);
    const apply=()=>section.style.setProperty('--intro-ornament',JSON.stringify(input.value));apply();
    input.addEventListener('input',()=>{values[key]=input.value;apply();persist()});marks.append(label,input);
  });container.append(marks);
- status.textContent=canSave?'Chữ tự lưu trên trình duyệt này. Có thể để trống để ẩn một dòng.':'Chữ chỉ cập nhật trong phiên này vì trình duyệt không cho lưu.';
+ updatePermission();window.addEventListener('card-adminchange',updatePermission);
+ status.textContent='Nội dung được chia sẻ qua cloud; trạng thái lưu sẽ hiển thị ở phần trạng thái chung. Có thể để trống để ẩn một dòng.';
 })();

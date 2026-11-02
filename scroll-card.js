@@ -23,19 +23,21 @@
  document.addEventListener('keydown',event=>{if((event.ctrlKey||event.metaKey)&&event.shiftKey&&event.key.toLowerCase()==='e'){event.preventDefault();showEditor()}});
  const photoInput=document.getElementById('photo-input'),image=document.getElementById('memory-photo');
  const placeholder=document.getElementById('photo-placeholder'),remove=document.getElementById('remove-photo');
- let revision=0,photoReady=false;
+ let revision=0,photoReady=false,photoBusy=false;
  photoInput.disabled=true;remove.disabled=true;
+ function updatePhotoPermission(){const editable=photoReady&&CardCloud.canEdit&&!photoBusy;photoInput.disabled=!editable;remove.disabled=!editable||image.hidden}
  function applyPhoto(value){
    if(value===null){image.removeAttribute('src');image.hidden=true;placeholder.hidden=false;remove.disabled=false;return}
    image.src=value;image.hidden=false;placeholder.hidden=true;remove.disabled=false;
  }
  const photoRestore=(async()=>{
-   try{const saved=await PhotoStorage.get('main');if(saved!==undefined)applyPhoto(saved);photoReady=true;photoInput.disabled=false;remove.disabled=image.hidden;}
-   catch{status.textContent='Không thể khôi phục ảnh đã lưu. Hãy tải lại trang trước khi chỉnh sửa.';}
+   try{await CardCloud.ready;const saved=await PhotoStorage.get('main');if(saved!==undefined)applyPhoto(saved);photoReady=true;updatePhotoPermission();}
+   catch{status.textContent='Không thể tải ảnh dùng chung từ cloud. Chỉnh sửa ảnh hiện không khả dụng.';}
  })();
+ window.addEventListener('card-adminchange',updatePhotoPermission);
  photoInput.addEventListener('change',async()=>{
-   const file=photoInput.files[0];if(!file)return;if(!photoReady){photoInput.value='';return}const current=++revision;photoInput.disabled=true;remove.disabled=true;
-   if(!['image/jpeg','image/png','image/webp','image/avif','image/gif'].includes(file.type)||file.size>8*1024*1024){status.textContent='Chọn ảnh JPG, PNG, WebP, AVIF hoặc GIF, tối đa 8 MB.';photoInput.value='';photoInput.disabled=false;remove.disabled=image.hidden;return}
+   const file=photoInput.files[0];if(!file)return;if(!photoReady||!CardCloud.canEdit){photoInput.value='';return}const current=++revision;photoBusy=true;updatePhotoPermission();
+   if(!['image/jpeg','image/png','image/webp','image/avif','image/gif'].includes(file.type)||file.size>8*1024*1024){status.textContent='Chọn ảnh JPG, PNG, WebP, AVIF hoặc GIF, tối đa 8 MB.';photoInput.value='';photoBusy=false;updatePhotoPermission();return}
    try{
      const url=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=reject;reader.readAsDataURL(file)});
      await new Promise((resolve,reject)=>{const test=new Image();test.onload=resolve;test.onerror=reject;test.src=url});
@@ -43,8 +45,8 @@
      await PhotoStorage.set('main',url);
      if(current!==revision)return;
      image.src=url;image.hidden=false;placeholder.hidden=true;remove.disabled=false;status.textContent='Đã thay ảnh trong bố cục thư và ảnh.';
-   }catch(error){if(current!==revision)return;status.textContent=error?.message?.includes('storage')||error?.message?.includes('save')||error?.message?.includes('Photo')?'Không thể lưu ảnh trên thiết bị này. Ảnh chưa được thay đổi.':'Không đọc được ảnh, bạn thử ảnh khác nhé.';photoInput.value=''}
-   photoInput.disabled=false;remove.disabled=image.hidden;
+   }catch(error){if(current!==revision)return;status.textContent=error?.message?.includes('storage')||error?.message?.includes('save')||error?.message?.includes('Photo')?'Không thể lưu ảnh lên cloud. Ảnh chưa được thay đổi.':'Không đọc được ảnh, bạn thử ảnh khác nhé.';photoInput.value=''}
+   photoBusy=false;updatePhotoPermission();
  });
- remove.addEventListener('click',async()=>{if(!photoReady)return;const current=++revision;photoInput.disabled=true;remove.disabled=true;try{await PhotoStorage.set('main',null);if(current!==revision)return;image.removeAttribute('src');image.hidden=true;placeholder.hidden=false;photoInput.value='';status.textContent='Đã trả khung ảnh về trạng thái trống.';}catch{if(current===revision)status.textContent='Không thể lưu thay đổi. Ảnh chưa được xóa.';}finally{if(current===revision){photoInput.disabled=false;remove.disabled=image.hidden}}});
+ remove.addEventListener('click',async()=>{if(!photoReady||!CardCloud.canEdit||photoBusy)return;const current=++revision;photoBusy=true;updatePhotoPermission();try{await PhotoStorage.set('main',null);if(current!==revision)return;image.removeAttribute('src');image.hidden=true;placeholder.hidden=false;photoInput.value='';status.textContent='Ảnh đã được xóa khỏi nội dung dùng chung.';}catch{if(current===revision)status.textContent='Không thể lưu thay đổi ảnh lên cloud. Ảnh chưa được xóa.';}finally{if(current===revision){photoBusy=false;updatePhotoPermission()}}});
 })();

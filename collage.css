@@ -104,3 +104,7 @@ html.viewer-open{overflow:hidden}
 #keepsake-viewer-content .letter-sign{text-align:center;overflow-wrap:anywhere}
 .close-editor{appearance:none;-webkit-appearance:none;border:0!important;box-shadow:none!important;background:transparent!important;border-radius:50%;outline:0}
 .close-editor:focus-visible{outline:2px solid #a57b8c;outline-offset:-7px;border-radius:50%}
+html[data-card-loading] main{visibility:hidden}
+#card-loading{position:fixed;inset:40% 20px auto;text-align:center;color:#8e6878;font:20px 'Playfair Display',serif;z-index:3}
+.cloud-admin{padding:18px;margin:20px 0 28px;border:1px solid #e6cfd4;border-radius:12px;background:#fffaf5}
+.cloud-admin h3{margin-top:0;color:#8d6073}.cloud-admin p,.cloud-admin a{font-size:12px;line-height:1.8}.cloud-admin a{color:#98697e}.cloud-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.cloud-actions .editor-button{margin:0}#cloud-status{font-weight:500}#cloud-status[data-error="true"]{color:#a1354b}#cloud-token{width:100%;font-size:16px}#dev-dialog textarea:disabled,#dev-dialog input:disabled{opacity:.65;cursor:default}.editor-button:disabled{opacity:.5;cursor:default}
