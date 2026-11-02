@@ -1,0 +1,56 @@
+/* Shared romantic watercolor materials, with independent animated envelope panels. */
+:root{--rose:#9c6178;--ink:#6e505c;--muted:#916e7d}
+.cover .envelope-button{transform:none;width:clamp(290px,42vw,590px)}
+.cover .envelope{transform:none;filter:drop-shadow(0 22px 25px #50343e45)}
+.cover .envelope-button:hover .envelope{transform:translateY(-5px)}
+.envelope-back{background:#c490a1 url('assets/blush-satin.webp') center/cover;border:1px solid #e7bcca}
+.envelope-front{background:linear-gradient(105deg,#a6657e14,#fff3ed12 40%,#8f5f7422),url('assets/blush-satin.webp') center/100% 100%;box-shadow:inset 0 -1px 5px #a36c7a33}
+.envelope-flap{background:linear-gradient(175deg,#fff5ec40,#8f576d14),url('assets/blush-satin.webp') 50% 15%/100% 175%;filter:drop-shadow(0 3px 2px #77495950)}
+.lace-edge{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 1px 1px #7f526455);opacity:.94}
+.seal{background:radial-gradient(circle at 32% 24%,#f3c6bc,#d29699 34%,#b97886 56%,#e5b3a9 61%,#aa6c7a 70%,#dda59f 83%,#bc8391);border:5px double #e6b2ae;color:#f8d5c5;box-shadow:0 4px 5px #6e415555,inset 0 0 0 2px #97606f66,inset 1px 2px 4px #ffe9d580;text-shadow:0 2px 1px #955a70;font-size:clamp(23px,3vw,39px);width:14%;left:43%;top:43%}
+.envelope-address{color:#815267;text-shadow:0 1px #ffefea70;font-family:'Great Vibes',cursive;font-style:normal;font-size:clamp(27px,3.5vw,43px);bottom:12%}
+.envelope-address>span{font:italic clamp(9px,1.15vw,13px) 'Playfair Display',serif;color:#936378;letter-spacing:.4px;margin-top:7px}
+.bow{display:none}
+.letter-peek{background:#fff8ee url('assets/watercolor-stationery.webp') center/100% 100%;color:var(--rose)}
+.letter-stage,.photo-stage{background-color:#f1dce2;background-image:linear-gradient(#f4e3e6dc,#faefebeb 32%,#f5e6e3ed 68%,#eddae1df),url('assets/swan-background-desktop.webp');background-size:100% 100%,cover;background-position:center;gap:30px;overflow:hidden}
+.letter-stage{padding-top:80px;padding-bottom:55px}
+.letter-stage:before,.photo-stage:before{content:'';position:absolute;inset:19px;border:1px solid #fff9ee88;outline:1px solid #b7809230;outline-offset:5px;z-index:-1;pointer-events:none}
+.section-intro:before{content:'❦';display:block;color:#b58696;font:32px 'Playfair Display',serif;margin-bottom:18px;text-shadow:0 1px #fff9ef}
+.eyebrow{letter-spacing:3px;color:#8e6879}
+h1{font-size:clamp(26px,3vw,37px);color:#74515f}h1>span{font-size:clamp(59px,7vw,88px);color:#a4657b;text-shadow:0 1px #fff9f0}
+.letter{width:min(700px,100%);padding:130px 120px 175px;min-height:850px;background:#fff9ee url('assets/watercolor-stationery.webp') center/100% 100%;border:0;box-shadow:0 18px 45px #70445919;transform:rotate(-.5deg)}
+.letter:after{display:none}
+.letter-heart{font-size:34px;color:#b68492;margin-bottom:24px}
+.salutation{font-size:27px;color:#9b6178}#wish-text{font-size:18px;line-height:2.15;color:#70535c}
+.letter-sign{font:28px/1.5 'Great Vibes',cursive;margin-top:29px;color:#a46d80}
+.signature{color:#886272}.scroll-cue{color:#896778}
+.photo-stage{padding-top:75px;padding-bottom:80px;background-image:linear-gradient(#eddae1df,#faefebe6 35%,#f1dce2e6),url('assets/swan-background-desktop.webp')}
+.photo-stage h2{font:clamp(40px,5.3vw,65px)/1.3 'Great Vibes',cursive;color:#a0657c;margin-bottom:10px}
+.section-intro>p{color:#8e6c7b;font:italic 16px/1.8 'Playfair Display',serif}
+.big-photo{max-width:800px;padding:70px 66px 66px;background:#fff9ef url('assets/watercolor-stationery.webp') center/100% 100%;border:0;box-shadow:0 20px 45px #86516d26;transform:rotate(-.7deg)}
+.frame-crest{position:absolute;top:25px;left:0;right:0;text-align:center;font:25px 'Great Vibes',cursive;color:#b78694}
+.photo-window{border:3px double #c39c9b;outline:1px solid #ead6ca;outline-offset:5px;background:linear-gradient(#fbf1e6c9,#e7c8d899),url('assets/swan-background-desktop-960.webp') center/cover}
+#photo-placeholder{min-height:390px;color:#97677c;background:#fff3eb44}#photo-placeholder>span{font-size:60px;color:#b58391}#photo-placeholder>p{font-size:20px}
+figcaption{font:26px/1.4 'Great Vibes',cursive;color:#a0697f;padding-top:25px}
+.photo-flowers{display:none}.closing{font-size:18px;color:#91697a}
+@media(max-width:1100px) and (orientation:portrait){.cover .envelope-button{transform:none;width:min(550px,80vw)}}
+@media(max-width:600px){.cover .envelope-button{width:86vw;transform:none}.seal{border-width:3px}.envelope-address{font-size:29px;bottom:11%}.envelope-address>span{font-size:9px}.letter-stage,.photo-stage{padding-left:16px;padding-right:16px;background-image:linear-gradient(#f5e5e9e0,#f9eee9ec 40%,#efdae2e8),url('assets/swan-background-mobile.webp');background-position:center;background-size:100% 100%,cover;gap:23px}.letter-stage{padding-top:55px}.letter-stage:before,.photo-stage:before{inset:10px;outline-offset:3px}.section-intro:before{font-size:26px;margin-bottom:14px}.eyebrow{font-size:8px;letter-spacing:1.8px}h1{font-size:24px}h1>span{font-size:55px;line-height:1.5}.letter{padding:100px 56px 190px;min-height:0;background-size:100% 100%}.letter-heart{font-size:28px;margin-bottom:20px}.salutation{font-size:24px}#wish-text{font-size:16px;line-height:2.05}.letter-sign{font-size:24px;margin-top:25px}.photo-stage{padding-top:60px;padding-bottom:65px}.photo-stage h2{font-size:39px}.section-intro>p{font-size:14px}.big-photo{padding:52px 26px 44px;transform:rotate(-.5deg)}.frame-crest{top:16px;font-size:21px}#photo-placeholder{min-height:330px}#photo-placeholder>p{font-size:17px}figcaption{font-size:22px;line-height:1.5;padding-top:20px}.closing{font-size:16px;max-width:260px}.letter-peek strong{font-size:39px}}
+@media(max-height:500px) and (orientation:landscape){.cover .envelope-button{width:40vw;max-width:380px;transform:none}}
+/* Copy remains editable without losing the layout or decorative child elements. */
+.envelope-address,.letter-peek strong,h1>span,.letter-sign,figcaption,.closing,.signature,.section-intro h2{overflow-wrap:anywhere}
+.envelope-address>span,.letter-peek>span,.eyebrow,.scroll-cue{white-space:pre-line;overflow-wrap:anywhere}
+#photo-placeholder>p{white-space:pre-line}.section-intro:before{content:var(--intro-ornament,'❦')}
+.text-editor-group{border-top:1px solid #dfc4ce;padding:15px 0;margin-top:12px}
+.text-editor-group summary{font-size:14px;color:var(--rose);cursor:pointer;padding:7px 0;line-height:1.6}
+.text-editor-group textarea{min-height:46px;white-space:pre-wrap}.text-editor-group label{line-height:1.7}
+#text-save-status{font-size:12px;line-height:1.8;color:var(--rose);position:sticky;bottom:-29px;background:var(--paper);padding:12px 0;margin:0}
+/* Olive satin envelope and polished gold clasp, matched to the reference. */
+.envelope-back{background-color:#7a914f;background-image:url('assets/olive-satin.webp');border-color:#aabb7e}
+.envelope-front{background-image:linear-gradient(105deg,#334b231a,#e9edbd12 40%,#30461c26),url('assets/olive-satin.webp')}
+.envelope-flap{background-image:linear-gradient(175deg,#edf0c426,#263d171a),url('assets/olive-satin.webp')}
+.lace-edge{opacity:.36;filter:drop-shadow(0 1px 1px #33431f55)}
+.envelope-address{color:#304326;text-shadow:0 1px #e5e9b455}
+.envelope-address>span{color:#40532c}
+.seal{width:15%;left:42.5%;top:42%;border:4px solid #d7b858;border-radius:43% 47% 44% 48%;background:conic-gradient(from 25deg,#76531b,#fff2a4 12%,#bd8a27 24%,#fcebac 37%,#967020 49%,#fff2b0 60%,#b78325 77%,#f5d77a 90%,#76531b);color:#76541c;box-shadow:0 5px 7px #26301766,0 0 0 1px #674c24,inset 0 0 0 2px #fff1a7,inset 0 0 0 5px #b98a33,inset 2px 3px 8px #fff8bd;text-shadow:0 1px #fff2ba;font-size:clamp(24px,3vw,40px)}
+.seal:before{content:'';position:absolute;inset:16%;border:1px solid #805b2380;border-radius:50%;box-shadow:0 1px #fff3b0,inset 0 1px 3px #7b561b45;pointer-events:none}
+@media(max-width:600px){.seal{border-width:3px}}

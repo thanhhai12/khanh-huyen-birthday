@@ -1,0 +1,101 @@
+.collage-stage{padding:65px 35px 48px;gap:22px;background-image:linear-gradient(#f3e8dedb,#f4e8e3eb 35%,#e2e5d9e6),url('assets/swan-background-desktop.webp')}
+.collage-stage>.section-intro:before{margin-bottom:10px}
+.collage-stage h1{font-size:27px;margin-top:12px}.collage-stage h1>span{font-size:65px;line-height:1.3}
+.keepsake-composition{position:relative;isolation:isolate;display:grid;grid-template-columns:1.06fr .94fr;align-items:start;width:min(1040px,100%);padding:40px 38px 110px;margin:20px auto 0;gap:0}
+.collage-backpaper{position:absolute;z-index:-1;inset:95px 30px 30px;transform:rotate(-3deg);background:#f7f1e6 url('assets/watercolor-stationery.webp') center/100% 100%;border:1px solid #e8d5bf;box-shadow:0 10px 35px #6d5d4020}
+.collage-stage .letter{z-index:2;width:100%;min-height:0;margin:0;padding:85px 58px 135px;transform:rotate(-5deg);background-color:#f6f2e8;box-shadow:0 12px 30px #3f452c25}
+.collage-stage.entering .letter{animation:collage-letter 1s ease both}
+.collage-stage .letter-heart{font-size:25px;margin-bottom:18px;color:#7c8b65}
+.collage-stage .salutation{font-size:26px;color:#68764c}
+.collage-stage #wish-text{font-size:16px;line-height:1.95;color:#5e584c}
+.collage-stage .letter-sign{font-size:25px;color:#758158;line-height:1.5;margin-top:24px}
+.collage-stage .collage-photo{position:relative;z-index:3;min-height:0;padding:0;margin:22px -4px 0 -6px;background:none;overflow:visible;display:flex;flex-direction:column;align-items:center;gap:18px}
+.collage-photo:before{display:none}
+.collage-photo .section-intro{transform:rotate(4deg);padding-left:20px}.collage-photo .section-intro:before{display:none}
+.collage-photo .eyebrow{font-size:8px;letter-spacing:1.8px;color:#82836b}
+.collage-photo h2{font-size:38px;line-height:1.2;color:#8e6475;margin:12px 0 6px}
+.collage-photo .section-intro>p{font-size:13px;margin:0;color:#86776b}
+.collage-stage .big-photo{width:100%;max-width:none;transform:rotate(7deg);padding:18px 17px 24px;margin:4px 0 0;background:#fffaf0;border:1px solid #e1d5bf;box-shadow:1px 12px 25px #4f50302e}
+.collage-stage .frame-crest{display:none}
+.collage-stage .photo-window{outline:0;border:1px solid #dbc9b4;background:linear-gradient(#f9eee885,#e6d4d07a),url('assets/swan-background-mobile.webp') center/cover}
+.collage-stage #photo-placeholder{min-height:400px;background:transparent;padding:25px}
+.collage-stage #photo-placeholder>p{font-size:18px}.collage-stage #photo-placeholder>span{font-size:55px}
+.collage-stage .big-photo img{width:100%;height:auto}
+.collage-stage figcaption{font-size:24px;padding:19px 7px 0;color:#887260}
+.photo-clip{position:absolute;top:-22px;right:24px;width:17px;height:68px;border:3px solid #b9995c;border-radius:12px;transform:rotate(-5deg);z-index:4;box-shadow:1px 1px 1px #fff1c8,inset 1px 1px #f7e6bb;pointer-events:none}
+.photo-clip:after{content:'';position:absolute;inset:5px 2px 17px;border:2px solid #b9995c;border-radius:8px}
+.collage-pocket{position:absolute;left:0;right:0;bottom:0;height:265px;z-index:4;pointer-events:none;filter:drop-shadow(0 7px 10px #5e54341a)}
+.collage-pocket:before{content:'';position:absolute;inset:0;background:linear-gradient(29deg,#eee9dc 49.8%,transparent 50%) left/50.2% 100% no-repeat,linear-gradient(-29deg,#fcf7eb 49.8%,transparent 50%) right/50.2% 100% no-repeat;filter:drop-shadow(0 -1px 1px #a18e7330)}
+.collage-pocket:after{content:'';position:absolute;inset:55% 0 0;background:linear-gradient(160deg,#f8f3e6,#e8e3d4);clip-path:polygon(0 100%,50% 0,100% 100%);border-bottom:1px solid #d5c7ad}
+.pocket-seal{position:absolute;top:55%;left:calc(50% - 38px);z-index:2;width:76px;height:76px;border-radius:45%;display:grid;place-items:center;background:conic-gradient(#99742f,#fff1a5,#ba963b,#f5dfa0,#9d792f);border:4px double #d8b966;color:#80632e;font:37px serif;box-shadow:0 4px 8px #594c3633,inset 0 0 0 4px #e4c975}
+.collage-blooms{position:absolute;z-index:5;pointer-events:none;width:210px;opacity:.87;filter:drop-shadow(0 4px 3px #766e3c19)}
+.blooms-left{left:-85px;top:105px;transform:rotate(-15deg)}.blooms-right{right:-70px;bottom:30px;transform:rotate(28deg)}
+.collage-stage>.closing{font-size:19px;color:#7e8465;margin-top:20px}.collage-stage>.signature{margin-top:0}.collage-stage>.scroll-cue{font-size:10px;margin-top:0;color:#8e867b}.collage-stage>.scroll-cue>span{margin-top:8px;font-size:16px}
+@keyframes collage-letter{from{opacity:0;transform:translateY(30px) rotate(-8deg)}to{opacity:1;transform:translateY(0) rotate(-5deg)}}
+@media(max-width:700px){.collage-stage{padding:48px 18px 35px;gap:18px}.collage-stage h1{font-size:23px}.collage-stage h1>span{font-size:54px}.keepsake-composition{grid-template-columns:1fr;padding:15px 12px 110px;margin:8px auto 0;max-width:480px;gap:20px}.collage-backpaper{inset:90px 4px 20px;transform:rotate(-1deg)}.collage-stage .letter{width:94%;padding:95px 43px 145px;transform:rotate(-3deg);margin-left:0}.collage-stage #wish-text{font-size:16px;line-height:1.95}.collage-stage .letter-sign{font-size:24px}.collage-stage .collage-photo{width:88%;margin:-53px -3px 0 auto;gap:16px;z-index:3}.collage-photo .section-intro{padding:0 7px;transform:rotate(3deg)}.collage-photo .eyebrow{font-size:7px;letter-spacing:1.1px}.collage-photo h2{font-size:32px}.collage-photo .section-intro>p{font-size:12px}.collage-stage .big-photo{transform:rotate(5deg);padding:11px 11px 18px}.collage-stage #photo-placeholder{min-height:290px;padding:20px}.collage-stage #photo-placeholder>p{font-size:16px}.collage-stage figcaption{font-size:21px}.photo-clip{right:17px;height:53px;top:-17px;width:14px;border-width:2px}.photo-clip:after{border-width:1px;inset:4px 2px 12px}.collage-pocket{height:175px}.pocket-seal{width:61px;height:61px;left:calc(50% - 30px);font-size:29px}.collage-blooms{width:125px}.blooms-left{left:-39px;top:78px}.blooms-right{right:-32px;bottom:55px}.collage-stage>.closing{font-size:17px;max-width:290px;line-height:1.8;margin-top:11px}}
+@media(prefers-reduced-motion:reduce){.collage-stage.entering .letter{animation:none}}
+/* Keep collage decoration clear of readable copy and photo captions. */
+.collage-backpaper{background:linear-gradient(135deg,#f8f3e8,#e8e6d7);border:1px solid #d9cfb8}
+.collage-pocket{height:155px}.blooms-left{left:-92px;top:65px;width:180px}.blooms-right{right:-75px;bottom:5px;width:185px}
+@media(max-width:700px){.collage-pocket{height:130px}.blooms-left{left:-48px;top:45px;width:110px}.blooms-right{right:-35px;bottom:7px;width:120px}}
+@media(max-width:700px){.collage-stage .letter{padding-left:49px;padding-right:49px;padding-bottom:180px}.collage-stage .collage-photo{margin-top:-10px}}
+/* A single open envelope: all keepsakes are physically tucked behind its front. */
+.keepsake-composition{display:block;width:min(900px,100%);height:auto;aspect-ratio:1.08;padding:0;margin:15px auto 8px;container-type:inline-size}
+.collage-backpaper{inset:8% 2% 1%;transform:none;clip-path:polygon(0 40%,50% 0,100% 40%,100% 100%,0 100%);background:#f7f0e2;border:0;box-shadow:none}
+.collage-stage .letter{position:absolute;left:7%;top:12%;width:45%;height:69%;min-height:0;padding:10% 5% 9%;margin:0;transform:rotate(-8deg);overflow:hidden;z-index:2;background-color:#eef0de;background-blend-mode:multiply;box-shadow:0 3px 15px #494b2622;border-radius:30% 29% 3px 3px / 12% 12% 3px 3px}
+.collage-stage.entering .letter{animation:none}
+.collage-stage .letter-heart{font-size:2.8cqw;margin-bottom:1.2cqw}.collage-stage .salutation{font-size:3cqw;margin-bottom:1.5cqw}.collage-stage #wish-text{font-size:1.8cqw;line-height:1.85}.collage-stage .letter-sign{font-size:2.8cqw;margin-top:1.5cqw}
+.read-letter-hit{position:absolute;left:7%;top:12%;width:45%;height:60%;transform:rotate(-8deg);background:transparent;border:0;z-index:6;border-radius:25% 25% 0 0}
+.collage-stage .collage-photo{position:absolute;left:49%;top:37%;width:39%;margin:0;padding:0;display:block;z-index:4}
+.collage-photo>.section-intro{display:none}
+.collage-stage .big-photo{position:relative;margin:0;transform:rotate(10deg);padding:2cqw 1.7cqw 2.8cqw;background:#fffaf0;box-shadow:0 5px 12px #44402735;border:0}
+.collage-stage .photo-window{aspect-ratio:4/4.6;overflow:hidden;display:block}
+.collage-stage .photo-window #memory-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.collage-stage #photo-placeholder{min-height:0;height:100%;padding:1cqw;background:linear-gradient(#f9efe450,#e6d7d250)}
+.collage-stage #photo-placeholder>span{font-size:5cqw}.collage-stage #photo-placeholder>p{font-size:1.7cqw;line-height:1.5}
+.collage-stage figcaption{font-size:2.5cqw;padding:1.2cqw 0 0;line-height:1.3}
+.photo-clip{width:1.8cqw;height:6.6cqw;top:-1.8cqw;right:2cqw;border-width:2px}.photo-clip:after{border-width:1px;inset:4px 2px 12px}
+.photo-open-hit{position:absolute;inset:0;z-index:3;border:0;background:transparent}
+.snapshot{position:absolute;display:block;width:19%;height:29%;padding:1.1cqw 1.1cqw 3.3cqw;background:#fffaf2;border:1px solid #ddd1be;box-shadow:0 3px 9px #50472a33;z-index:3}
+.snapshot-two{top:3%;left:47%;transform:rotate(-9deg)}.snapshot-three{top:10%;left:68%;transform:rotate(12deg)}
+.snapshot img{width:100%;height:100%;object-fit:cover;display:block}.snapshot-placeholder{display:grid;place-items:center;width:100%;height:100%;font:5cqw 'Playfair Display',serif;color:#9e877e;background:linear-gradient(#d5c4bc50,#8d9b8070),url('assets/swan-background-mobile-640.webp') center/cover}
+.collage-pocket{left:2%;right:2%;bottom:1%;height:49%;z-index:7;filter:drop-shadow(0 7px 8px #4e472325)}
+.collage-pocket:before{inset:0;background:linear-gradient(33deg,#ece6d8 49.8%,transparent 50%) left/50.2% 100% no-repeat,linear-gradient(-33deg,#faf5e9 49.8%,transparent 50%) right/50.2% 100% no-repeat}
+.collage-pocket:after{inset:43% 0 0;background:linear-gradient(155deg,#fcf8ec,#e6e0d0);clip-path:polygon(0 100%,50% 0,100% 100%)}
+.pocket-seal{top:40%;width:10cqw;height:10cqw;left:calc(50% - 5cqw);font-size:5cqw;border-width:3px}
+.collage-blooms{z-index:8;width:22%}.blooms-left{left:-3%;top:23%;transform:rotate(-24deg)}.blooms-right{right:-2%;bottom:24%;transform:rotate(17deg)}
+#keepsake-viewer{width:min(850px,calc(100% - 24px));padding:45px 25px 25px}
+#keepsake-viewer-content>img{display:block;max-width:100%;height:auto;margin:auto}
+#keepsake-viewer-content .letter{position:relative;transform:none;width:100%;height:auto;min-height:0;padding:100px 13% 150px;overflow:visible}
+#keepsake-viewer-content #wish-text{font-size:18px;line-height:2.1}
+#keepsake-viewer-content .salutation{font-size:27px}#keepsake-viewer-content .letter-sign{font-size:28px}
+.extra-photo-control{border-top:1px solid #dfc4ce;margin-top:20px;padding-top:4px}
+@media(max-width:700px){.collage-stage{padding:38px 10px 30px}.collage-stage h1{font-size:21px}.collage-stage h1>span{font-size:48px}.keepsake-composition{width:100%;max-width:570px;aspect-ratio:1.02;margin:12px auto 5px}.collage-stage .letter{padding:10% 5% 9%;width:45%;height:69%;margin:0}.collage-stage #wish-text{font-size:1.8cqw;line-height:1.85}.collage-stage .salutation{font-size:3cqw}.collage-stage .letter-sign{font-size:2.8cqw}.collage-stage .collage-photo{width:39%;margin:0}.collage-stage .big-photo{padding:2cqw 1.7cqw 2.8cqw}.collage-stage #photo-placeholder{min-height:0;padding:1cqw}.collage-stage #photo-placeholder>p{font-size:1.7cqw}.collage-stage figcaption{font-size:2.5cqw;padding-top:1.2cqw}.collage-pocket{height:49%}.pocket-seal{width:10cqw;height:10cqw;left:calc(50% - 5cqw);font-size:5cqw}.collage-blooms{width:22%}.blooms-left{left:-3%;top:23%}.blooms-right{right:-2%;bottom:24%}.collage-stage>.closing{font-size:16px;margin-top:16px}.collage-stage>.scroll-cue{font-size:9px}.photo-clip{height:6.6cqw;width:1.8cqw;top:-1.8cqw;right:2cqw}#keepsake-viewer{padding:43px 10px 15px}#keepsake-viewer-content .letter{padding:90px 13% 150px}#keepsake-viewer-content #wish-text{font-size:16px}}
+#keepsake-viewer-content .wish-text{font:18px/2.1 'Playfair Display',serif;white-space:pre-line;overflow-wrap:anywhere;color:#70535c}
+@media(max-width:700px){#keepsake-viewer-content .wish-text{font-size:16px}}
+/* The keepsake pocket is the opened version of the cover's olive envelope. */
+.collage-backpaper{background:linear-gradient(#dfe6c330,#273b1b20),url('assets/olive-satin.webp') center/100% 100%;clip-path:polygon(0 40%,50% 0,100% 40%,100% 100%,0 100%);border:1px solid #aabb7e}
+.collage-pocket:before{background:linear-gradient(105deg,#334b231a,#e9edbd12 40%,#30461c26),url('assets/olive-satin.webp') center/100% 100%;clip-path:polygon(0 0,50% 57%,100% 0,100% 100%,0 100%);filter:drop-shadow(0 -1px 1px #46512b55)}
+.collage-pocket:after{inset:43% 0 0;background:linear-gradient(175deg,#edf0c426,#263d171a),url('assets/olive-satin.webp') center bottom/100% 175%;clip-path:polygon(0 100%,50% 0,100% 100%);border-bottom:1px solid #aabb7e}
+.pocket-seal{border:4px solid #d7b858;border-radius:43% 47% 44% 48%;background:conic-gradient(from 25deg,#76531b,#fff2a4 12%,#bd8a27 24%,#fcebac 37%,#967020 49%,#fff2b0 60%,#b78325 77%,#f5d77a 90%,#76531b);color:#76541c;box-shadow:0 5px 7px #26301766,0 0 0 1px #674c24,inset 0 0 0 2px #fff1a7,inset 0 0 0 5px #b98a33,inset 2px 3px 8px #fff8bd;text-shadow:0 1px #fff2ba}
+.pocket-seal:before{content:'';position:absolute;inset:16%;border:1px solid #805b2380;border-radius:50%;box-shadow:0 1px #fff3b0,inset 0 1px 3px #7b561b45}
+.pocket-lace{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;opacity:.36;filter:drop-shadow(0 1px 1px #33431f55)}
+@media(max-width:700px){.pocket-seal{border-width:3px}}
+/* Viewers reserve the close row and fit the complete image or paper in the viewport. */
+html.viewer-open{overflow:hidden}
+#keepsake-viewer{box-sizing:border-box;width:min(1000px,calc(100vw - 20px));height:calc(100dvh - 20px);max-width:none;max-height:none;margin:auto;padding:54px 16px 16px;overflow:hidden;overscroll-behavior:contain;background:#fff9f1f5}
+#keepsake-viewer>.close-editor,#keepsake-viewer form{margin:0}
+#keepsake-viewer .close-editor{top:7px;right:10px;width:40px;height:40px;z-index:5}
+#keepsake-viewer-content{width:100%;height:100%;min-height:0;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#keepsake-viewer-content>img{width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain;margin:0;display:block}
+#keepsake-viewer-content .letter{position:absolute;left:50%;top:50%;translate:-50% -50%;transform-origin:center;min-height:0;height:auto;max-width:none;padding:80px 12% 100px;box-sizing:border-box;margin:0;box-shadow:none}
+#keepsake-viewer-content .letter-heart{font-size:24px;margin:0 0 12px}
+#keepsake-viewer-content .salutation{font-size:calc(var(--reader-font)*1.2);margin:0 0 14px}
+#keepsake-viewer-content .wish-text{font-size:var(--reader-font);line-height:1.75;margin:0;white-space:pre-line}
+#keepsake-viewer-content .letter-sign{font-size:calc(var(--reader-font)*1.35);line-height:1.3;margin:18px 0 0}
+@media(max-width:700px){#keepsake-viewer{width:calc(100vw - 12px);height:calc(100dvh - 12px);padding:49px 8px 8px}#keepsake-viewer-content .letter{padding:70px 12% 90px}#keepsake-viewer-content .wish-text{font-size:var(--reader-font);line-height:1.7}}
+/* Botanical sprays belong to the lower corners of the envelope front. */
+.collage-blooms{width:25%;height:auto;pointer-events:none;filter:drop-shadow(0 3px 2px #42432620);object-fit:contain}
+.blooms-left{left:-3%;top:auto;bottom:0;transform:rotate(-15deg)}
+.blooms-right{right:-3%;top:auto;bottom:0;transform:scaleX(-1) rotate(-15deg)}
+@media(max-width:700px){.collage-blooms{width:25%}.blooms-left,.blooms-right{top:auto;bottom:0}}
